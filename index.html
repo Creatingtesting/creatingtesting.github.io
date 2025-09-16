@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Roblox Join Redirect</title>
+    <script>
+      window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
+        const placeId = params.get("placeId");
+        const gameInstanceId = params.get("gameInstanceId");
 
+        if (placeId && gameInstanceId) {
+          // Build Roblox deep link
+          const joinURL = `roblox://experiences/start?placeId=${encodeURIComponent(placeId)}&gameInstanceId=${encodeURIComponent(gameInstanceId)}`;
+          
+          // Try redirect
+          window.location.href = joinURL;
+
+          // Fallback message
+          document.body.innerHTML = `
+            <h2>Opening Roblox...</h2>
+            <p>If Roblox doesn’t open automatically, <a href="${joinURL}">click here</a> to join.</p>
+          `;
+        } else {
+          document.body.innerHTML = "<h2>❌ Missing placeId or gameInstanceId!</h2>";
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Roblox...</p>
+  </body>
+</html>
