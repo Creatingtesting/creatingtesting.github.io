@@ -3,6 +3,62 @@
   <head>
     <meta charset="UTF-8">
     <title>Roblox Join Redirect</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: radial-gradient(circle at center, #0f0f2d, #000010);
+        background-image: url("https://i.ibb.co/tzDp7r9/galaxy-bg.jpg");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+      }
+      h2 {
+        font-size: 2em;
+        margin-bottom: 0.5em;
+        color: #c770ff;
+        text-shadow: 0 0 10px #8000ff, 0 0 20px #ff00ff;
+      }
+      p {
+        font-size: 1.1em;
+        color: #ddd;
+      }
+      a {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 25px;
+        font-size: 1em;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(45deg, #7b2ff7, #f107a3);
+        border-radius: 30px;
+        text-decoration: none;
+        box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+        transition: 0.3s;
+      }
+      a:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 0, 255, 1);
+      }
+      .stars {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+      }
+      @keyframes twinkle {
+        from { opacity: 0.2; }
+        to { opacity: 1; }
+      }
+    </style>
     <script>
       window.onload = function () {
         const params = new URLSearchParams(window.location.search);
@@ -10,24 +66,25 @@
         const gameInstanceId = params.get("gameInstanceId");
 
         if (placeId && gameInstanceId) {
-          // Build Roblox deep link
           const joinURL = `roblox://experiences/start?placeId=${encodeURIComponent(placeId)}&gameInstanceId=${encodeURIComponent(gameInstanceId)}`;
-          
-          // Try redirect
+
+          // Auto redirect attempt
           window.location.href = joinURL;
 
-          // Fallback message
-          document.body.innerHTML = `
-            <h2>Opening Roblox...</h2>
-            <p>If Roblox doesn’t open automatically, <a href="${joinURL}">click here</a> to join.</p>
+          // Show fallback
+          document.body.innerHTML += `
+            <h2>🚀 Launching Roblox...</h2>
+            <p>If Roblox doesn’t open automatically, click below:</p>
+            <a href="${joinURL}">Open in Roblox</a>
           `;
         } else {
-          document.body.innerHTML = "<h2>❌ Missing placeId or gameInstanceId!</h2>";
+          document.body.innerHTML += "<h2>❌ Missing placeId or gameInstanceId!</h2>";
         }
       };
     </script>
   </head>
   <body>
-    <p>Redirecting to Roblox...</p>
+    <h2>🌌 Preparing your journey...</h2>
+    <p>Redirecting to Roblox Universe...</p>
   </body>
 </html>
