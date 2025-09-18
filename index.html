@@ -14,20 +14,23 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         color: #fff;
         background: radial-gradient(circle at center, #0f0f2d, #000010);
-        background-image: url("https://i.ibb.co/tzDp7r9/galaxy-bg.jpg");
+        background-image: url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
         background-size: cover;
         background-position: center;
         text-align: center;
+        overflow: hidden;
       }
       h2 {
         font-size: 2em;
         margin-bottom: 0.5em;
         color: #c770ff;
         text-shadow: 0 0 10px #8000ff, 0 0 20px #ff00ff;
+        z-index: 2;
       }
       p {
         font-size: 1.1em;
         color: #ddd;
+        z-index: 2;
       }
       a {
         display: inline-block;
@@ -41,25 +44,43 @@
         text-decoration: none;
         box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         transition: 0.3s;
+        z-index: 2;
       }
       a:hover {
         transform: scale(1.05);
         box-shadow: 0 0 25px rgba(255, 0, 255, 1);
       }
-      .stars {
+
+      /* 🌌 Star field */
+      .star {
         position: absolute;
         width: 2px;
         height: 2px;
         background: white;
         border-radius: 50%;
+        opacity: 0.8;
         animation: twinkle 2s infinite alternate;
       }
+
       @keyframes twinkle {
         from { opacity: 0.2; }
         to { opacity: 1; }
       }
     </style>
     <script>
+      // 🌌 Generate stars
+      document.addEventListener("DOMContentLoaded", () => {
+        for (let i = 0; i < 100; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+          star.style.top = Math.random() * 100 + "vh";
+          star.style.left = Math.random() * 100 + "vw";
+          star.style.animationDuration = (1 + Math.random() * 3) + "s";
+          document.body.appendChild(star);
+        }
+      });
+
+      // 🚀 Roblox redirect
       window.onload = function () {
         const params = new URLSearchParams(window.location.search);
         const placeId = params.get("placeId");
